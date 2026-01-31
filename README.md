@@ -5,18 +5,6 @@ One of the core services (`Day-2`) is maintained as a **Git submodule** because 
 
 This structure allows the backend to remain modular, scalable, and deployment-friendly while keeping clear separation of responsibilities.
 
----
-
-## Repository Structure
-
-Backend/
-├── Day-1/
-├── Day-2/            # Git submodule (separate backend service)
-├── .gitignore
-├── .gitmodules
-└── README.md
-
----
 
 ## Cloning the Repository (Required Steps)
 
