@@ -1,0 +1,4 @@
+project.tldr
+node_modules
+.env
+.vscode
