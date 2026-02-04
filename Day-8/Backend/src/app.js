@@ -6,10 +6,21 @@ const express = require("express")
 /** @type {import('mongoose').Model} */
 const notesModel = require("./models/notes.model")
 const cors = require("cors") // require cors after rn commnad [ npm i cors ] in terminal
+const path = require("path")
 
 const app = express() // Create Instance of Server
 app.use(express.json()) //Middleware
 app.use(cors()) //Bypass CORS policy and allow Cros origin
+
+/**
+ * http://localhost:3000/assets/index-DLB1m1Wg.js
+ * http://localhost:3000/assets/index-ba2-FDEi.css
+ * http://localhost:3000/assets/index-DLB1m1Wg-2.js
+ */
+
+app.use(express.static("./public"))
+
+
 /**
  * POST /api/notes
  */
@@ -69,6 +80,11 @@ app.patch('/api/notes/:id', async (req, res) => {
         note
     })
 
+})
+
+
+app.use("*name",(req,res)=>{
+    res.sendFile(path.join(__dirname,"../public/index.html"))
 })
 
 
