@@ -7,7 +7,7 @@ function App() {
   console.log("hello");
 
   function fetchNotes() {
-    axios.get("http://localhost:3000/api/notes").then((res) => {
+    axios.get("https://backend-w6fq.onrender.com/api/notes").then((res) => {
       setNotes(res.data.notes);
     });
   }
@@ -20,7 +20,7 @@ function App() {
     e.preventDefault();
     const { title, description } = e.target.elements;
 
-    axios.post("http://localhost:3000/api/notes",{
+    axios.post("https://backend-w6fq.onrender.com/api/notes",{
       title:title.value,
       description:description.value
     }).then(res=>{
@@ -32,7 +32,7 @@ function App() {
   }
 
   function handelDelete(noteId){
-    axios.delete("http://localhost:3000/api/notes/"+noteId)
+    axios.delete("https://backend-w6fq.onrender.com/api/notes/"+noteId)
       .then(res=>{
         console.log(res.data)
         fetchNotes()
