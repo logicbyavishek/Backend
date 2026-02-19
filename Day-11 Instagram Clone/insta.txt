@@ -13,3 +13,15 @@
 ==> users
     => followers
     => following
+
+
+============ DEFINE USER SCHEMA ==========
+USER= {
+    usename:String,
+    email:String,
+    password:String,
+    Bio:String,
+    followers:Array,
+    Following:Array,
+    profile_image:String
+}
