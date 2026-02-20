@@ -16,7 +16,7 @@ const UserSchema = new mongoose.Schema({
         required:[true,"password is required"]
     },
     bio:String,
-    profile_image:{
+    profileImage:{
         type:String,
         default:"https://ik.imagekit.io/buk7vdbsh/default%20image.jpg?updatedAt=1770818663225",
     },

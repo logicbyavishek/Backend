@@ -1,25 +1,17 @@
-const express = require("express")
-const userModel = require("../models/user.model")
-const authRouter = express.Router()
+const express = require("express");
+const authController = require("../controller/auth.controller")
 
-authRouter.post("/register", async (req,res)=>{
-    const {username,email,passowrd,bio,profilrImage}=req.body
+const authRouter = express.Router();
 
-    // check if user exist with same email or username ?
+/**
+ * post /api/auth/register
+ */
 
-    const isUserExistsByEmail = await userModel.findOne({email})
+authRouter.post("/register", authController.registerController );
 
-    if(isUserExistsByEmail){
-        return res.status(409).json({
-            message:"user already exists with same email"
-        })
-    }
+/**
+ * login /api/auth/login
+ */
+authRouter.post("/login", authController.loginController );
 
-    const isUserExistsByUsername = await userModel.findOne({username})
-
-    if(isUserExistsByUsername){
-        return res.status(409).json({
-            message:"user already exists with same username"
-        })
-    }
-})
+module.exports = authRouter;
