@@ -42,16 +42,16 @@
 			"typeName": "pointer"
 		},
 		{
-			"x": 882.5882169599779,
-			"y": 291.71471352424027,
-			"z": 0.6237932684972007,
+			"x": 2465.390274052873,
+			"y": 620.0696182978519,
+			"z": 0.3183512829059935,
 			"meta": {},
 			"id": "camera:page:page",
 			"typeName": "camera"
 		},
 		{
-			"x": -558.2286034083493,
-			"y": 355.01158331714834,
+			"x": -2275.8942282102275,
+			"y": -538.9199283437096,
 			"rotation": 0,
 			"isLocked": false,
 			"opacity": 1,
@@ -61,11 +61,11 @@
 			"props": {
 				"color": "black",
 				"size": "s",
-				"w": 1179.5,
+				"w": 3081.013088210242,
 				"font": "draw",
 				"textAlign": "start",
 				"autoSize": true,
-				"scale": 1,
+				"scale": 2.9132712896464614,
 				"richText": {
 					"type": "doc",
 					"attrs": {
@@ -80,7 +80,31 @@
 							"content": [
 								{
 									"type": "text",
-									"text": "ekhane amra akbar username e user exist kore ki na abar next time user email basis e exist kore kki na dekhe cgheck korchi "
+									"text": "ekhane amra akbar username e user exist kore ki na abar "
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "next time user email basis e exist kore kki na "
+								}
+							]
+						},
+						{
+							"type": "paragraph",
+							"attrs": {
+								"dir": "auto"
+							},
+							"content": [
+								{
+									"type": "text",
+									"text": "dekhe check korchi "
 								}
 							]
 						}
@@ -92,12 +116,10 @@
 			"typeName": "shape"
 		},
 		{
-			"editingShapeId": "shape:xzoJav6WhvQF5PQ6jGAbx",
+			"editingShapeId": null,
 			"croppingShapeId": null,
-			"selectedShapeIds": [
-				"shape:xzoJav6WhvQF5PQ6jGAbx"
-			],
-			"hoveredShapeId": "shape:xzoJav6WhvQF5PQ6jGAbx",
+			"selectedShapeIds": [],
+			"hoveredShapeId": null,
 			"erasingShapeIds": [],
 			"hintingShapeIds": [],
 			"focusedGroupId": null,
@@ -107,8 +129,8 @@
 			"typeName": "instance_page_state"
 		},
 		{
-			"x": -966.8888654438706,
-			"y": -519.9918176657637,
+			"x": -2269.643178293826,
+			"y": -290.19499696547217,
 			"rotation": 0,
 			"isLocked": false,
 			"opacity": 1,
@@ -116,12 +138,22 @@
 			"id": "shape:_NFbKd8r5ZXYJtz64RICF",
 			"type": "image",
 			"props": {
-				"w": 1920,
-				"h": 1080,
+				"w": 628.5251946946046,
+				"h": 1295.7929525877055,
 				"assetId": "asset:-310287158",
 				"playing": true,
 				"url": "",
-				"crop": null,
+				"crop": {
+					"topLeft": {
+						"x": 0.03881824583223657,
+						"y": 0.09104005465446291
+					},
+					"bottomRight": {
+						"x": 0.17798570998353375,
+						"y": 0.6011080913118216
+					},
+					"isCircle": false
+				},
 				"flipX": false,
 				"flipY": false,
 				"altText": ""
@@ -163,7 +195,11 @@
 			"followingUserId": null,
 			"opacityForNextShape": 1,
 			"stylesForNextShape": {
-				"tldraw:size": "s"
+				"tldraw:size": "xl",
+				"tldraw:geo": "rectangle",
+				"tldraw:color": "light-blue",
+				"tldraw:fill": "none",
+				"tldraw:horizontalAlign": "end"
 			},
 			"brush": null,
 			"scribbles": [],
@@ -178,7 +214,7 @@
 			"screenBounds": {
 				"x": 0,
 				"y": 0,
-				"w": 1038,
+				"w": 1026,
 				"h": 610
 			},
 			"insets": [
