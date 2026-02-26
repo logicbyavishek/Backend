@@ -1,5 +1,6 @@
 const userModel = require("../models/user.model"); // require user model from user.model.js
-const crypto = require("crypto"); // require crypto for encryption
+// const crypto = require("crypto"); // require crypto for encryption
+const bcrypt = require("bcryptjs") //for more security than crypto we use bcrypt .js
 const jwt = require("jsonwebtoken");//require jsonwebtoken for token creation
 
 
@@ -45,7 +46,10 @@ async function registerController (req, res) {
   }
 
   // for passoword part we use a libary name crypto and it's already installed
-  const hash = crypto.createHash("sha256").update(password).digest("hex"); // create hash for password security 
+  // const hash = crypto.createHash("sha256").update(password).digest("hex"); // create hash for password security 
+  // Now we use the bcrypt for password security
+  
+  const hash = await bcrypt.hash(password,10) // this is the bcrypt hash for password security and the 10 means the number of times the hash is generated
 
   /**
    * creaate user in data base 
@@ -128,9 +132,16 @@ async function loginController (req, res) {
 
   //user er dawa password r amader store has password taa k match kore dekhbo jsdi thik hoi tobei take log in korte  debo noi na 
 
-  const hash = crypto.createHash("sha256").update(password).digest("hex");
+  // const hash = crypto.createHash("sha256").update(password).digest("hex");
 
-  const ispassword = hash == user.password;
+  // const ispassword = hash == user.password;
+
+  /**
+   * now we use bcrypt their also and this syntax is very friendly
+   */
+
+  const ispassword = await bcrypt.compare(password, user.password)
+
   //password jdi match na kore tahole amra bolbo j incorrect password messeage debo
   if (!ispassword) {
     res.status(401).json({
