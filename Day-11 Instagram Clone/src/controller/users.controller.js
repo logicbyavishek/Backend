@@ -32,12 +32,10 @@ async function followUserController(req,res) {
     if(existingFollowRecord){
         // If previously rejected, allow sending request again.
         if(existingFollowRecord.status === "rejected"){
-            existingFollowRecord.status = followeeUser.isPrivate ? "pending" : "accepted"
+            existingFollowRecord.status = "pending"
             await existingFollowRecord.save()
             return res.status(200).json({
-                messeage: existingFollowRecord.status === "pending"
-                    ? `Follow request sent to ${followeeUserName} again`
-                    : `You are now following ${followeeUserName}`,
+                messeage:`Follow request sent to ${followeeUserName} again`,
                 follow: existingFollowRecord
             })
         }
@@ -45,13 +43,13 @@ async function followUserController(req,res) {
         return res.status(200).json({
             messeage: existingFollowRecord.status === "pending"
                 ? `Follow request already sent to ${followeeUserName}`
-                : `You are already following ${followeeUserName}`,
+                : `You already have status '${existingFollowRecord.status}' with ${followeeUserName}`,
             follow:existingFollowRecord
         })
     }
 
-    // Private account -> pending request, Public account -> accepted directly.
-    const followStatus = followeeUser.isPrivate ? "pending" : "accepted"
+    // For every user, new follow starts as pending.
+    const followStatus = "pending"
 
     const followRecord = await followModel.create({
         follower:followerUserName,
@@ -60,9 +58,7 @@ async function followUserController(req,res) {
     })
 
     return res.status(201).json({
-        messeage: followStatus === "pending"
-            ? `Follow request sent to ${followeeUserName}`
-            : `You are now following ${followeeUserName}`,
+        messeage:`Follow request sent to ${followeeUserName}`,
         follow:followRecord
     })
 }
@@ -71,7 +67,7 @@ async function acceptFollowRequestController(req,res){
     const currentUserName = req.user.username
     const requesterUserName = req.params.username
 
-    // Find pending request where current user is the followee (owner of private account).
+    // Find pending request where current user is the followee.
     const followRequest = await followModel.findOne({
         follower: requesterUserName,
         followee: currentUserName,
@@ -84,7 +80,7 @@ async function acceptFollowRequestController(req,res){
         })
     }
 
-    followRequest.status = "accepted"
+    followRequest.status = "accept"
     await followRequest.save()
 
     return res.status(200).json({
@@ -163,11 +159,11 @@ async function unfollowUserController(req,res) {
     const followerUserName = req.user.username
     const followeeUserName = req.params.username
 
-    // Unfollow should only work for accepted follow relation.
+    // Unfollow should only work for accept follow relation.
     const isUserFollowing = await followModel.findOne({
         follower:followerUserName,
         followee:followeeUserName,
-        status:"accepted"
+        status:"accept"
     })
 
     if(!isUserFollowing){
