@@ -7,24 +7,6 @@ const jwt = require("jsonwebtoken");//require jsonwebtoken for token creation
 async function registerController (req, res) {
   const { username, email, password, bio, profileImage } = req.body;
 
-  // check if user exist with same email or username ?
-
-  // const isUserExistsByEmail = await userModel.findOne({email})
-
-  // if(isUserExistsByEmail){
-  //     return res.status(409).json({
-  //         message:"user already exists with same email"
-  //     })
-  // }
-
-  // const isUserExistsByUsername = await userModel.findOne({username})
-
-  // if(isUserExistsByUsername){
-  //     return res.status(409).json({
-  //         message:"user already exists with same username"
-  //     })
-  // }
-
   /**
    * we use $or operator for check user exist with same email or username in isUserAlreadyExist variable
    */
@@ -75,7 +57,8 @@ async function registerController (req, res) {
 
   const token = jwt.sign(
     {
-      id: user._id, // user data
+      id: user._id,
+      username:user.username // user data token create using user id and username both are unique
     },
     process.env.JWT_SECRET, // jwt secret key
     { expiresIn: "1d" }, // expire time 1day set
@@ -149,7 +132,7 @@ async function loginController (req, res) {
     });
   }
   // jdi password thik dei tahole ebar token dawar pala amara token debo tar jonno token jmn reguster e create kora ache omn create kore nebo 
-  const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+  const token = jwt.sign({ id: user._id , username:user.username }, process.env.JWT_SECRET, {
     expiresIn: "1d",
   });
   //token ta cookie te save kore debo 
