@@ -27,6 +27,10 @@ const UserSchema = new mongoose.Schema({
         type:String,
         default:"https://ik.imagekit.io/buk7vdbsh/default%20image.jpg?updatedAt=1770818663225",
     },
+    isPrivate:{
+        type:Boolean,
+        default:false
+    }
 })
 
 const userModel = mongoose.model("users",UserSchema) //create mongoose model for user because it is necessary for create update and delete user
