@@ -1,11 +1,13 @@
 const express = require("express")
 const cookieParser = require("cookie-parser")
 const CORS = require("cors")
+const morgan = require("morgan")
 
 const app = express()
 
 app.use(express.json()) //middleware for read json value in request.body without this output is undefined
 app.use(cookieParser()) //middleware for read cookie value in request.cookie
+app.use(morgan("dev"))
 app.use(CORS({
     credentials:true, //for backend create cookies in frontend
     origin:"http://localhost:5173"
